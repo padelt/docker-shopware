@@ -9,14 +9,18 @@ to build the image and name it `shopware`.
 To run this container, please provide the necessary volume to hold the
 MySQL server databases and the Shopware files like this:
 
-    sudo docker run -it -t shopware \
+    sudo docker run -it --name shopware \
       -v /docker-volumes/shopware:/volume \
       -p 8080:80 \
-      shopware /bin/bash
+      shopware
 
 On the first start (when the volume is still empty), the MySQL databases
 will be initialized and `/usr/bin/mysql_secure_installation` is run to
 let you set a root password.
+
+To debug anything, append `/bin/bash` to `docker run`. This drops you in
+a bash shell. Run `/start.sh &` in there to let the daemons run and still
+be able to check logs etc.
 
 After the first start, a random password has been assigned for the HTTP
 authentication of the phpMyAdmin pages. It is written to the volume as
