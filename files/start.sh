@@ -52,5 +52,7 @@ else
   echo "Existing volume for MySQL found."
 fi
 
+rm -f /var/run/apache2/apache2.pid
+
 supervisord -n -c /etc/supervisord.conf -e debug
 
